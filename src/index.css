@@ -2,41 +2,66 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Professional Office Parking System Design System */
 
 @layer base {
   :root {
+    /* Corporate Blue Theme */
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 210 30% 8%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 210 30% 8%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 210 30% 8%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Professional Blue Primary */
+    --primary: 210 85% 18%;
+    --primary-foreground: 0 0% 98%;
+    --primary-light: 210 85% 25%;
+    --primary-dark: 210 85% 12%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Corporate Secondary */
+    --secondary: 210 20% 96%;
+    --secondary-foreground: 210 30% 8%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 210 20% 96%;
+    --muted-foreground: 210 15% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 210 40% 93%;
+    --accent-foreground: 210 30% 8%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Status Colors */
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 98%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 0%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Interactive Elements */
+    --border: 210 20% 90%;
+    --input: 210 20% 95%;
+    --ring: 210 85% 18%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-light)));
+    --gradient-secondary: linear-gradient(135deg, hsl(var(--background)), hsl(var(--accent)));
+    --gradient-success: linear-gradient(135deg, hsl(var(--success)), hsl(142 76% 42%));
+    --gradient-warning: linear-gradient(135deg, hsl(var(--warning)), hsl(38 92% 55%));
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(210 20% 0% / 0.05);
+    --shadow-md: 0 4px 6px -1px hsl(210 20% 0% / 0.1);
+    --shadow-lg: 0 10px 15px -3px hsl(210 20% 0% / 0.1);
+    --shadow-xl: 0 20px 25px -5px hsl(210 20% 0% / 0.1);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     --sidebar-background: 0 0% 98%;
 
@@ -102,4 +127,95 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground;
   }
+}
+
+@layer components {
+  /* Professional Button Variants */
+  .btn-corporate {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+  
+  .btn-primary {
+    @apply btn-corporate bg-gradient-to-r from-primary to-primary-light text-primary-foreground hover:scale-105 hover:shadow-lg focus:ring-primary/50;
+  }
+  
+  .btn-secondary {
+    @apply btn-corporate bg-secondary text-secondary-foreground border border-border hover:bg-accent focus:ring-primary/30;
+  }
+  
+  .btn-success {
+    @apply btn-corporate bg-gradient-to-r from-success to-emerald-600 text-success-foreground hover:scale-105 hover:shadow-lg focus:ring-success/50;
+  }
+  
+  .btn-warning {
+    @apply btn-corporate bg-gradient-to-r from-warning to-amber-500 text-warning-foreground hover:scale-105 hover:shadow-lg focus:ring-warning/50;
+  }
+
+  /* Card Components */
+  .card-corporate {
+    @apply bg-card border border-border rounded-xl shadow-md hover:shadow-lg transition-all duration-200;
+  }
+  
+  .card-stat {
+    @apply card-corporate p-6 hover:scale-105;
+  }
+  
+  .card-feature {
+    @apply card-corporate p-8 text-center hover:shadow-xl;
+  }
+
+  /* Input Components */
+  .input-corporate {
+    @apply w-full px-4 py-3 border border-border rounded-lg bg-input text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-200;
+  }
+
+  /* Animation Utilities */
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out;
+  }
+  
+  .animate-scale-in {
+    animation: scaleIn 0.4s ease-out;
+  }
+
+  /* Status Indicators */
+  .status-free {
+    @apply bg-gradient-to-r from-success to-emerald-600 text-success-foreground;
+  }
+  
+  .status-occupied {
+    @apply bg-gradient-to-r from-destructive to-red-600 text-destructive-foreground;
+  }
+  
+  .status-reserved {
+    @apply bg-gradient-to-r from-warning to-amber-500 text-warning-foreground;
+  }
+
+  /* Professional Layout */
+  .section-padding {
+    @apply px-6 py-12 md:px-12 lg:px-24;
+  }
+  
+  .container-corporate {
+    @apply max-w-7xl mx-auto;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
 }
